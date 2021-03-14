@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Google from '../components/Google'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -60,6 +61,7 @@ export default function Home() {
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
+      <Google/>
     </div>
   )
 }
