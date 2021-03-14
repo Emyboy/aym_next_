@@ -3,7 +3,7 @@ import SidePanel from '../../../components/SidePanel/SidePanel'
 
 const id = props => {
     return (
-        <div className='post-single-wrapper axil-section-gap'>
+        <div className='axil-post-list-area post-listview-visible-color axil-section-gap is-active'>
             <div className='container'>
                 <div className='row'>
                     <div className="col-lg-8 bg-color-white">

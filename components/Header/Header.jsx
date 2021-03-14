@@ -4,20 +4,24 @@ import { MdHome, MdModeEdit, MdMenu } from "react-icons/md";
 
 export default function Header() {
     return (
-        <header className="header axil-header  header-light header-sticky fixed-top" style={{ position: 'fixed' }}>
+        <header className="header axil-header  header-light header-sticky fixed-top"
+            // style={{ position: 'fixed' }}
+        >
             <div className="header-wrap">
                 <div className="row justify-content-between align-items-center">
                     <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
                         <div className="logo">
-                            <a href="index.html">
-                                {/* <img className="dark-logo" src="assets/images/logo/logo-black.png" alt="Blogar logo" />
+                            <Link href='/'>
+                                <a href="#">
+                                    {/* <img className="dark-logo" src="assets/images/logo/logo-black.png" alt="Blogar logo" />
                                 <img className="light-logo" src="assets/images/logo/logo-white2.png" alt="Blogar logo" /> */}
-                                {/* <h2>AYM.</h2> */}
-                                <span className='h2' style={{
-                                    border: "gray 1px solid",
-                                    padding: "10px"
-                                }}>AYM.</span>
-                            </a>
+                                    {/* <h2>AYM.</h2> */}
+                                    <span className='h2' style={{
+                                        border: "gray 1px solid",
+                                        padding: "10px"
+                                    }}>AYM.</span>
+                                </a>
+                            </Link>
                         </div>
                     </div>
 
@@ -598,7 +602,7 @@ export default function Header() {
                                         <a href="#"><MdHome size={20} /></a>
                                     </Link>
                                 </li>
-                                
+
                                 <li className="icon"><a href="#"><MdModeEdit size={20} /></a></li>
                                 <li>
                                     <Link href='/user/849348984'>
@@ -608,7 +612,7 @@ export default function Header() {
                             </ul>
                             <div className="hamburger-menu d-block d-xl-none">
                                 <div className="hamburger-inner">
-                                    <div className="icon"><MdMenu size={20}/></div>
+                                    <div className="icon"><MdMenu size={20} /></div>
                                 </div>
                             </div>
                         </div>
