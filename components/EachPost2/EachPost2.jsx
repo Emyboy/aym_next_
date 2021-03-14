@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export default function EachPost2() {
     return (
         <div className="content-block post-medium mb--20">

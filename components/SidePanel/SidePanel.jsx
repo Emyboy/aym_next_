@@ -1,5 +1,7 @@
 import React from 'react'
 import EachPost2 from '../EachPost2/EachPost2'
+import { FaFacebook } from 'react-icons/fa'
+import { AiFillInstagram, AiFillTwitterCircle, AiOutlineLink, AiFillLinkedin } from 'react-icons/ai'
 
 export default function SidePanel() {
     return (
@@ -51,16 +53,6 @@ export default function SidePanel() {
                     </ul>
                 </div>
 
-                <div className="axil-single-widget widget widget_search mb--30">
-                    <h5 className="widget-title">Search</h5>
-                    <form action="#">
-                        <div className="axil-search form-group">
-                            <button type="submit" className="search-button"><i className="fal fa-search"></i></button>
-                            <input type="text" className="form-control" placeholder="Search" />
-                        </div>
-                    </form>
-                </div>
-
                 <div className="axil-single-widget widget widget_postlist mb--30">
                     <h5 className="widget-title">Popular on Blogar</h5>
                     <div className="post-medium-block">
@@ -75,11 +67,11 @@ export default function SidePanel() {
                 <div className="axil-single-widget widget widget_social mb--30">
                     <h5 className="widget-title">Stay In Touch</h5>
                     <ul className="social-icon md-size justify-content-center">
-                        <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i className="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i className="fab fa-slack"></i></a></li>
-                        <li><a href="#"><i className="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#"><FaFacebook size={20} /></a></li>
+                        <li><a href="#"><AiFillInstagram size={20} /></a></li>
+                        <li><a href="#"><AiFillTwitterCircle size={20} /></a></li>
+                        {/* <li><a href="#"><i className="fab fa-slack"></i></a></li> */}
+                        <li><a href="#"><AiFillLinkedin size={20}/></a></li>
                     </ul>
                 </div>
 
