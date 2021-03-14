@@ -593,10 +593,18 @@ export default function Header() {
                                 </div>
                             </form> */}
                             <ul className="metabar-block">
-                                <li className="icon"><a href="#"><MdHome size={20} /></a></li>
+                                <li className="icon">
+                                    <Link href='/'>
+                                        <a href="#"><MdHome size={20} /></a>
+                                    </Link>
+                                </li>
                                 
                                 <li className="icon"><a href="#"><MdModeEdit size={20} /></a></li>
-                                <li><a href="#"><img src="https://hubstaff-talent.s3.amazonaws.com/avatars/2216852fe9157a7d1c79667d906cf661.jpg" alt="Author Images" /></a></li>
+                                <li>
+                                    <Link href='/user/849348984'>
+                                        <a href="#"><img src="https://hubstaff-talent.s3.amazonaws.com/avatars/2216852fe9157a7d1c79667d906cf661.jpg" alt="Author Images" /></a>
+                                    </Link>
+                                </li>
                             </ul>
                             <div className="hamburger-menu d-block d-xl-none">
                                 <div className="hamburger-inner">
