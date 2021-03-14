@@ -2,6 +2,7 @@ import React from 'react'
 import EachPost2 from '../EachPost2/EachPost2'
 import { FaFacebook } from 'react-icons/fa'
 import { AiFillInstagram, AiFillTwitterCircle, AiOutlineLink, AiFillLinkedin } from 'react-icons/ai'
+import EachCat from '../EachCat/EachCat'
 
 export default function SidePanel() {
     return (
@@ -10,46 +11,10 @@ export default function SidePanel() {
 
                 <div className="axil-single-widget widget widget_categories mb--30">
                     <ul>
-                        <li className="cat-item">
-                            <a href="#" className="inner">
-                                <div className="thumbnail">
-                                    <img src="assets/images/post-images/category-image-01.jpg" alt="" />
-                                </div>
-                                <div className="content">
-                                    <h5 className="title">Tech</h5>
-                                </div>
-                            </a>
-                        </li>
-                        <li className="cat-item">
-                            <a href="#" className="inner">
-                                <div className="thumbnail">
-                                    <img src="assets/images/post-images/category-image-02.jpg" alt="" />
-                                </div>
-                                <div className="content">
-                                    <h5 className="title">Style</h5>
-                                </div>
-                            </a>
-                        </li>
-                        <li className="cat-item">
-                            <a href="#" className="inner">
-                                <div className="thumbnail">
-                                    <img src="assets/images/post-images/category-image-03.jpg" alt="" />
-                                </div>
-                                <div className="content">
-                                    <h5 className="title">Travel</h5>
-                                </div>
-                            </a>
-                        </li>
-                        <li className="cat-item">
-                            <a href="#" className="inner">
-                                <div className="thumbnail">
-                                    <img src="assets/images/post-images/category-image-04.jpg" alt="" />
-                                </div>
-                                <div className="content">
-                                    <h5 className="title">Food</h5>
-                                </div>
-                            </a>
-                        </li>
+                        <EachCat />
+                        <EachCat />
+                        <EachCat />
+                        <EachCat />
                     </ul>
                 </div>
 
