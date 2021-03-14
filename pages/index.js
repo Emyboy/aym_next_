@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import firebase from "firebase/app";
 import initFirebase from "../services/firebase";
+import EachPost from '../components/EachPost/EachPost';
+import SidePanel from '../components/SidePanel/SidePanel';
 
 initFirebase();
 
@@ -9,6 +11,22 @@ export default function Index(props) {
   console.log(props)
   return (
     <div>
+      <div className='axil-post-list-area post-listview-visible-color axil-section-gap is-active'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-lg-8 col-xl-8'>
+
+              <EachPost />
+              <EachPost />
+              <EachPost />
+              <EachPost />
+              <EachPost />
+
+            </div>
+            <SidePanel />
+          </div>
+        </div>
+      </div>
 
     </div>
   )
