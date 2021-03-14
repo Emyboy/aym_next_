@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { FaFacebook } from 'react-icons/fa'
 import { AiFillInstagram, AiFillTwitterCircle, AiOutlineLink } from 'react-icons/ai'
 
@@ -20,8 +21,8 @@ export default function EachPost() {
                         </a>
                     </div>
                 </div>
-                <h4 className="title"><a href="post-details.html">Security isn’t just a technology problem
-                                        it’s about design, too </a></h4>
+                <h4 className="title"><Link href='/post/how to make money/34'><a href="post-details.html">Security isn’t just a technology problem
+                                        it’s about design, too </a></Link></h4>
                 <div className="post-meta-wrapper">
                     <div className="post-meta">
                         <div className="content">

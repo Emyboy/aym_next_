@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { MdHome, MdModeEdit, MdMenu } from "react-icons/md";
 
 export default function Header() {
@@ -24,44 +25,7 @@ export default function Header() {
                         <div className="mainmenu-wrapper">
                             <nav className="mainmenu-nav">
                                 <ul className="mainmenu">
-                                    <li className="menu-item-has-children"><a href="#">Home</a>
-                                        <ul className="axil-submenu">
-                                            <li>
-                                                <a className="hover-flip-item-wrapper" href="index.html">
-                                                    <span className="hover-flip-item">
-                                                        <span data-text="Home Default">Home Default</span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="hover-flip-item-wrapper" href="home-creative-blog.html">
-                                                    <span className="hover-flip-item">
-                                                        <span data-text="Home Creative Blog">Home Creative Blog</span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="hover-flip-item-wrapper" href="home-seo-blog.html">
-                                                    <span className="hover-flip-item">
-                                                        <span data-text="Home SEO Blog">Home SEO Blog</span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="hover-flip-item-wrapper" href="home-tech-blog.html">
-                                                    <span className="hover-flip-item">
-                                                        <span data-text="Home Tech Blog">Home Tech Blog</span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="hover-flip-item-wrapper" href="home-lifestyle-blog.html">
-                                                    <span className="hover-flip-item">
-                                                        <span data-text="Home Lifestyle Blog">Home Lifestyle Blog</span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                    <li className="menu-item-has-children"><Link href='/'><a href="#">Home</a></Link>
                                     </li>
 
                                     <li className="menu-item-has-children"><a href="#">Posts</a>
