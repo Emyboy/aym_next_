@@ -1,6 +1,12 @@
 import React from 'react'
 import EachPost from '../../components/EachPost/EachPost'
 import SidePanel from '../../components/SidePanel/SidePanel'
+import { FaFacebook } from 'react-icons/fa'
+import { AiFillInstagram, AiFillTwitterCircle, AiOutlineLink } from 'react-icons/ai'
+import { RiUserFollowFill } from 'react-icons/ri'
+import { FaPowerOff } from 'react-icons/fa'
+import { MdModeEdit } from 'react-icons/md'
+import Heading from '../../components/Heading/Heading'
 
 export default function uuid() {
     return (
@@ -27,14 +33,26 @@ export default function uuid() {
                                             <div className="content">
                                                 <p className="b1 description">At 40+ years old, my favorite compliment is being told that I look like my mom. Seeing myself in her image, like this daughter up top, makes me so proud of how far I’ve come, and so thankful for where I come from</p>
                                                 <ul className="social-share-transparent size-md">
-                                                    <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#"><i className="fab fa-instagram"></i></a></li>
-                                                    <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i className="far fa-envelope"></i></a></li>
-                                                    <li><a href="#"><i className="fab fa-linkedin-in"></i></a></li>
+                                                    <li><a href="#"><FaFacebook size={20} /></a></li>
+                                                    <li><a href="#"><AiFillInstagram size={20} /></a></li>
+                                                    <li><a href="#"><AiFillTwitterCircle size={20} /></a></li>
+                                                    <li><a href="#"><AiOutlineLink size={20} /></a></li>
                                                 </ul>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className='col-md-3 mt-3'>
+                                        <button className='btn p-3 mt-1 h5 text-white button-rounded btn-primary'>
+                                            <RiUserFollowFill size={20} />{' '}
+                                            Follow
+                                        </button>
+                                        <button className='btn p-3 mt-1 h5 text-white button-rounded btn-success'>
+                                            <MdModeEdit size={20}  />{' '}
+                                            Edit</button>
+                                        <button className='btn p-3 mt-1 h5 text-white button-rounded btn-danger'>
+                                            <FaPowerOff size={20}  />{' '}
+                                            Logout
+                                            </button>
                                     </div>
                                 </div>
                             </div>
@@ -46,6 +64,7 @@ export default function uuid() {
             <div className='axil-post-list-area axil-section-gap bg-color-white'>
                 <div className='container'>
                     <div className='row'>
+                        <Heading text='Authors Posts'/>
                         <div className='col-lg-8 col-xl-8'>
                             <EachPost />
                             <EachPost />

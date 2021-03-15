@@ -603,7 +603,7 @@ export default function Header() {
                                     </Link>
                                 </li>
 
-                                <li className="icon"><Link href='/editor'>
+                                <li className="icon"><Link href='/create'>
                                     <a href="#"><MdModeEdit size={20} /></a>
                                 </Link></li>
                                 <li>

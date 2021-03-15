@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React, { useEffect } from 'react';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Select from 'react-select';
 import DropdownSelect from '../DropdownSelect';
 
 export default () => {
+
+    useEffect(() => {
+        console.log('again')
+    }, [])
+
     return (
-        <div className='bg-white'>
+        <div className='bg-white pt-4'>
             <div className="container">
 
                 <form action="#">
-                    <p className="comment-notes"><span id="email-notes">Your email address will not be
-                                                published.</span> Required fields are marked <span className="required">*</span></p>
+                    {/* <p className="comment-notes"><span id="email-notes">Your email address will not be
+                                                published.</span> Required fields are marked <span className="required">*</span></p> */}
+                    <h1 className='text-center'>Create Blog Post</h1>
                     <div className="w-100">
                         <div className="form-group">
                             <label>Your Name</label>
@@ -42,7 +48,7 @@ export default () => {
                         </div>
                         <div className="col-lg-12">
                             {/* <h2>Using CKEditor 5 build in React</h2> */}
-                            <CKEditor
+                            {/* <CKEditor
                                 editor={ClassicEditor}
                                 data="<p>Hello from CKEditor 5!</p>"
                                 onReady={editor => {
@@ -58,7 +64,7 @@ export default () => {
                                 onFocus={(event, editor) => {
                                     console.log('Focus.', editor);
                                 }}
-                            />
+                            /> */}
                             <hr />
                             <div style={{
                                 display: 'flex',
