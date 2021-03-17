@@ -7,8 +7,11 @@ import { RiUserFollowFill } from 'react-icons/ri'
 import { FaPowerOff } from 'react-icons/fa'
 import { MdModeEdit } from 'react-icons/md'
 import Heading from '../../components/Heading/Heading'
+import { withTheme } from '../../context/AppContext'
 
-export default function uuid() {
+export default withTheme((props) => {
+
+    console.log(props);
     return (
         <div>
             <div className="axil-author-area axil-author-banner bg-color-grey">
@@ -77,4 +80,4 @@ export default function uuid() {
             </div>
         </div>
     )
-}
+});

@@ -10,9 +10,11 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^26.0.0",
     "@ckeditor/ckeditor5-react": "^3.0.2",
+    "axios": "^0.21.1",
     "firebase": "^8.3.0",
     "firebase-admin": "^9.5.0",
     "next": "10.0.8",
+    "next-seo": "^4.20.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-horizontal-scrolling-menu": "^0.7.10",

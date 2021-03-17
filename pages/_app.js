@@ -7,11 +7,21 @@ import '../assets/css/style.css';
 import '../assets/css/App.css';
 import '../styles/globals.css';
 import Header from '../components/Header/Header';
+import Head from 'next/head'
+import { AppContextProvider } from '../context/AppContext';
+// import { NextSeo } from 'next-seo';
 
 function MyApp({ Component, pageProps }) {
   return <div className='main-wrapper'>
-    <Header />
-    <Component {...pageProps} />
+    <AppContextProvider>
+      {/* <NextSeo
+      title="Simple Usage Example"
+      description="A short description goes here."
+    /> */}
+      <Header />
+      <Component {...pageProps} />
+
+    </AppContextProvider>
   </div>
 }
 

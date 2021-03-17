@@ -1,11 +1,84 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { MdHome, MdModeEdit, MdMenu } from "react-icons/md";
+import firebase from "firebase/app";
+import "firebase/auth";
 
-export default function Header() {
+import initFirebase from "../../services/firebase";
+import Global from '../../Global';
+import axios from 'axios';
+import { withTheme } from '../../context/AppContext';
+import { RiUserFill } from 'react-icons/ri'
+
+
+initFirebase();
+
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export default withTheme((props) => {
+    const { context } = props;
+    const [userData, setUserData] = useState(null)
+
+    const loginUser = (user) => {
+        axios(Global.API_URL + '/auth/local', {
+            method: 'POST',
+            data: {
+                identifier: user ? user[0].email: userData[0].email,
+                password: user ? user[0].uid : userData[0].uid,
+            }
+        })
+            .then(res => {
+                console.log('LOGIN --', res)
+                localStorage.setItem('auth', JSON.stringify(res.data))
+                context.setContextState({
+                    auth: res.data
+                })
+            })
+            .catch(err => {
+                console.log('LOGIN --', err)
+            })
+    }
+
+    const handleAuthentication = async () => {
+
+        try {
+            const result = await firebase.auth().signInWithPopup(provider);
+            const user = result.user.providerData;
+            console.log('USER ----', user);
+            setUserData(user);
+            axios(Global.API_URL + "/auth/local/register", {
+                method: 'POST',
+                data: {
+                    username: user[0].uid,
+                    email: user[0].email,
+                    password: user[0].uid,
+                    first_name: user[0].displayName.split(' ')[0],
+                    last_name: user[0].displayName.split(' ')[1],
+                    avatar_url: user[0].photoURL,
+                    phone_number: user[0].phoneNumber
+                }
+            })
+                .then(res => {
+                    console.log('STATUS ---', res.status)
+                    console.log(res);
+                    context.setContextState({
+                        auth: res.data
+                    })
+                    localStorage.setItem('auth', JSON.stringify(res.data))
+                })
+                .catch(err => {
+                    const error = { ...err }
+                    console.log('STATUS --', error.status)
+                    loginUser(user)
+                })
+        } catch (error) {
+            alert('Error registering', error)
+        }
+
+    };
     return (
         <header className="header axil-header  header-light header-sticky fixed-top"
-            // style={{ position: 'fixed' }}
+        // style={{ position: 'fixed' }}
         >
             <div className="header-wrap">
                 <div className="row justify-content-between align-items-center">
@@ -606,11 +679,21 @@ export default function Header() {
                                 <li className="icon"><Link href='/create'>
                                     <a href="#"><MdModeEdit size={20} /></a>
                                 </Link></li>
-                                <li>
-                                    <Link href='/user/849348984'>
-                                        <a href="#"><img src="https://hubstaff-talent.s3.amazonaws.com/avatars/2216852fe9157a7d1c79667d906cf661.jpg" alt="Author Images" /></a>
-                                    </Link>
-                                </li>
+                                {
+                                    context.auth ?
+                                        <li className='icon'>
+                                            <Link href={`/user/${context.auth.user.username}`}>
+                                                {
+                                                    <a href="#"><img src={context.auth.user.avatar_url} alt="Author Images" /></a>
+                                                }
+                                            </Link>
+                                        </li> :
+                                        <li onClick={handleAuthentication} className='icon'>
+                                            <Link href='/user/849348984'>
+                                                <a href='#c'><RiUserFill size={20} /></a>
+                                            </Link>
+                                        </li>
+                                }
                             </ul>
                             <div className="hamburger-menu d-block d-xl-none">
                                 <div className="hamburger-inner">
@@ -623,4 +706,4 @@ export default function Header() {
             </div>
         </header>
     )
-}
+});
