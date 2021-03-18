@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import Select from 'react-select';
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-];
+// const options = [
+//     { value: 'chocolate', label: 'Chocolate' },
+//     { value: 'strawberry', label: 'Strawberry' },
+//     { value: 'vanilla', label: 'Vanilla' },
+// ];
 
-export default function DropdownSelect() {
+export default function DropdownSelect({
+    options,
+    onChange,
+    value,
+    isMulti,
+    label
+}) {
 
     const [selectedOption, setSelectedOption] = useState(null)
 
@@ -18,11 +24,12 @@ export default function DropdownSelect() {
 
     return (
         <div className="form-group">
-            <label>Leave a Reply</label>
+            <label>{label}</label>
             <Select
-                value={selectedOption}
-                onChange={handleChange}
+                value={value}
+                onChange={onChange}
                 options={options}
+                isMulti={isMulti}
             />
         </div>
     )

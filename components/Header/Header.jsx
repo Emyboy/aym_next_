@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MdHome, MdModeEdit, MdMenu } from "react-icons/md";
 import firebase from "firebase/app";
@@ -76,6 +76,11 @@ export default withTheme((props) => {
         }
 
     };
+
+    useEffect(() => {
+        context.getAllCategory()
+    },[])
+
     return (
         <header className="header axil-header  header-light header-sticky fixed-top"
         // style={{ position: 'fixed' }}

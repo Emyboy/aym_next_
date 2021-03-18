@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { Component } from 'react';
+import Global from '../Global';
 
 export const AppContext = React.createContext({
     auth: null,
@@ -14,7 +16,8 @@ export class AppContextProvider extends Component {
 
 
 
-            setContextState: this.setContextState.bind(this)
+            setContextState: this.setContextState.bind(this),
+            getAllCategory: this.getAllCategory.bind(this)
         };
 
         this.setContextState = this.setContextState.bind(this)
@@ -23,12 +26,24 @@ export class AppContextProvider extends Component {
 
     async componentDidMount() {
         this.setState({
-            auth: JSON.parse(localStorage.getItem('auth'))
+            auth: JSON.parse(localStorage.getItem('auth')),
+            categories: JSON.parse(localStorage.getItem('cat'))
         })
     }
 
     setContextState(newState){
         this.setState(newState)
+    }
+
+    getAllCategory(){
+        axios(Global.API_URL +'/categories')
+            .then(res => {
+                console.log(res)
+                localStorage.setItem('cat', JSON.stringify(res.data))
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
 
