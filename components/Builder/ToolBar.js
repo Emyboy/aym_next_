@@ -13,6 +13,10 @@ export default function ToolBar({
             <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Paragraph' icon={<FaParagraph size={15} />} /></a>
             <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Image' icon={<FaImage size={15} />} /></a>
             <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Link (URL)' icon={<FaLink size={15} />} /></a>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Heading' icon={<FaHeading size={15} />} /></a>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Paragraph' icon={<FaParagraph size={15} />} /></a>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Image' icon={<FaImage size={15} />} /></a>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Link (URL)' icon={<FaLink size={15} />} /></a>
         </div>
     )
 }
