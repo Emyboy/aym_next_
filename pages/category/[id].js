@@ -2,7 +2,7 @@ import React from 'react'
 import CatCard from '../../components/CatCard/CatCard'
 import CatBtn from '../../components/EachCat/CatBtn'
 
-export default function Category() {
+export default  () => {
     const child = { width: `30em`, height: `100%` }
     const parent = { width: `60em`, height: `100%` }
     return (

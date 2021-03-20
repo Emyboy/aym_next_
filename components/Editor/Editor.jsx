@@ -1,38 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import Select from 'react-select';
+import React, { useEffect, useState, useCallback } from 'react';
 import { withTheme } from '../../context/AppContext';
 import DropdownSelect from '../DropdownSelect';
 import axios from 'axios';
 import Global from '../../Global';
+import { useDropzone } from 'react-dropzone'
+import firebase from "firebase/app";
+import "firebase/storage";
+import { v4 as uuidv4 } from 'uuid';
+// import HTMLEditor from '../HTMLEditor';
 
 export default withTheme(props => {
 
     const { context } = props;
 
+    const [state, setState] = useState({
+        loading: false,
+        fileData: null
+    })
+    var storageRef = firebase.storage().ref();
+    
     const [data, setData] = useState({
         title: null,
         description: null,
         categories: [],
         category: [],
         body: null,
-        user_permissions: props.context.auth.user.id
-    })
-
-    const handleSubmit = () => {
+        user_permissions: null,
+        image_url: null,
+        src: null
+    });
+    
+    const deleteFile = (id) => {
+        // Create a reference to the file to delete
+        var desertRef = storageRef.child(`posts/${context.auth.user.id}/images/${id}_${context.auth.user.id}_1`);
+        
+        // Delete the file
+        desertRef.delete().then(() => {
+            // File deleted successfully
+            console.log('removed file')
+        }).catch((error) => {
+            // Uh-oh, an error occurred!
+            console.log(error)
+        });
+    }
+    
+    const sendToBackend = async (imageURL, storage_id) => {
         const post = {
             ...data,
             categories: data.categories.map(val => val.value),
-            category: data.category.value
+            category: data.category.value,
+            image_url: imageURL,
+            src: imageURL,
+            storage_id,
+            user_permissions: props.context.auth.user.id,
         }
         console.log('sending --', post);
-        axios(Global.API_URL+'/posts', {
+        axios(Global.API_URL + '/posts', {
             method: 'POST',
             data: post,
             headers: {
                 Authorization:
-                    `Bearer ${context.auth.jwt}`,
+                `Bearer ${context.auth.jwt}`,
             },
         })
         .then(res => {
@@ -40,8 +68,47 @@ export default withTheme(props => {
         })
         .catch(err => {
             console.log(err)
+            deleteFile(storage_id)
         })
     }
+    
+    const handleSubmit = async () => {
+        const storage_id = uuidv4()
+        var uploadTask = storageRef.child(`posts/${context.auth.user.id}/images/${storage_id}_${context.auth.user.id}_1`).put(state.fileData);
+        await uploadTask.on('state_changed',
+        (snapshot) => {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+        },
+            (error) => {
+                alert(error)
+                return null
+            },
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    sendToBackend(downloadURL, storage_id)
+                });
+            }
+        );
+    }
+
+    
+
+    const onDrop = useCallback(acceptedFiles => {
+        // Do something with the files
+        console.log('SELECTED --', acceptedFiles)
+        setState({ ...state, fileData: acceptedFiles[0] })
+    }, [])
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     useEffect(() => {
         console.log('again')
@@ -84,6 +151,29 @@ export default withTheme(props => {
                             />
                         </div>
                     </div>
+                    {
+                        state.fileData ?
+                            <>
+                                <label>Select An Image</label>
+                                <div style={{ border: '1px solid gray', textAlign: 'center', padding: '5%', marginBottom: '12px', borderRadius: '5px' }}>
+                                    <p className='mb-1'>File Selected</p>
+                                    <button onClick={() => {
+                                        setState({ ...state, fileData: null })
+                                    }} className='btn btn-danger btn-lg'>Remove</button>
+                                </div>
+                            </> :
+                            <>
+                                <label>Select An Image</label>
+                                <div {...getRootProps()} style={{ border: '1px solid gray', textAlign: 'center', padding: '5%', marginBottom: '12px', borderRadius: '5px' }}>
+                                    <input {...getInputProps()} />
+                                    {
+                                        isDragActive ?
+                                            <p>Drop the files here ...</p> :
+                                            <p>Drag 'n' drop an image here, or click to select files</p>
+                                    }
+                                </div>
+                            </>
+                    }
                     <div className="row row--10">
                         <div className="col-12">
                             <div className="form-group">
@@ -94,24 +184,7 @@ export default withTheme(props => {
 
                         <div className="col-lg-12">
                             <h5>Type Article Here.</h5>
-                            <CKEditor
-                                editor={ClassicEditor}
-                                data="<p>Hello from CKEditor 5!</p>"
-                                onReady={editor => {
-                                    console.log('Editor is ready to use!', editor);
-                                }}
-                                onChange={(event, editor) => {
-                                    const html = editor.getData();
-                                    console.log({ event, editor, html });
-                                    setData({ ...data, body: html })
-                                }}
-                                onBlur={(event, editor) => {
-                                    console.log('Blur.', editor);
-                                }}
-                                onFocus={(event, editor) => {
-                                    console.log('Focus.', editor);
-                                }}
-                            />
+                            {/* <HTMLEditor /> */}
                             <hr />
                             <div style={{
                                 display: 'flex',

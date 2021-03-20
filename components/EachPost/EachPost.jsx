@@ -7,7 +7,7 @@ export default function EachPost() {
     return (
         <div className="content-block post-list-view axil-control mt--30">
             <div className="post-thumbnail">
-                <Link href='/post/how to make money/34'>
+                <Link href='/post/9493488434/4'>
                     <a href="post-details.html">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH6KQQQtnCi09Ja_Ic4sQ-dVkhH7dn3odFBQ&usqp=CAU" alt="Post Images" />
                     </a>
@@ -24,7 +24,7 @@ export default function EachPost() {
                     </div>
                 </div>
                 <h4 className="title">
-                    <Link href='/post/how to make money/34'>
+                    <Link href='/post/9493488434/4'>
                         <a href="post-details.html">Security isn’t just a technology problem
                                         it’s about design, too </a>
                     </Link>

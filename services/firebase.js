@@ -7,10 +7,16 @@ const config = {
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DB_URL,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
 };
 
 export default function initFirebase() {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
+  }
+}
+export function storage() {
+  if (!firebase.apps.length) {
+    firebase.storage();
   }
 }

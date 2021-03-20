@@ -41,3 +41,23 @@ header {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+.scrollmenu {
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  /* padding: 5px; */
+  text-decoration: none;
+}
+
+.scrollmenu a:hover p {
+  border: 1px solid #007bff;
+  cursor: pointer;
+}
