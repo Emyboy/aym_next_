@@ -1,26 +1,18 @@
 import React from 'react'
-import { FaHeading } from 'react-icons/fa'
+import { FaHeading, FaParagraph, FaImage, FaLink} from 'react-icons/fa'
 import EachTool from './EachTool'
 
 
-export default function ToolBar() {
+export default function ToolBar({
+    state,
+    setState
+}) {
     return (
         <div className='fixed-bottom scrollmenu'>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-            <a><EachTool name='Heading' icon={<FaHeading size={15} />} /></a>
-        </div>  
-//         <div class="scrollmenu">
-//   <a href="#home">Home</a>
-//   <a href="#news">News</a>
-//   <a href="#contact">Contact</a>
-//   <a href="#about">About</a>
-//   ...
-// </div>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Heading' icon={<FaHeading size={15} />} /></a>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Paragraph' icon={<FaParagraph size={15} />} /></a>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Image' icon={<FaImage size={15} />} /></a>
+            <a><EachTool onClick={() => setState({ ...state, display: 'property' })} name='Link (URL)' icon={<FaLink size={15} />} /></a>
+        </div>
     )
 }
