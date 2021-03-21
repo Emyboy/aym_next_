@@ -30,10 +30,10 @@ export default function ToolBar({
                 <EachTool onClick={() => goToPropperty('media', 'img')}name='Image' icon={<FaImage size={15} />} />
             </a>
             <a>
-                <EachTool onClick={() => goToPropperty('text', 'link')} name='Link (URL)' icon={<FaLink size={15} />} />
+                <EachTool onClick={() => goToPropperty('text', 'a')} name='Link (URL)' icon={<FaLink size={15} />} />
             </a>
             <a>
-                <EachTool onClick={() => goToPropperty('text', 'link')} name='Qootes' icon={<ImQuotesLeft size={15} />} />
+                <EachTool onClick={() => goToPropperty('text', 'blockquote')} name='Qootes' icon={<ImQuotesLeft size={15} />} />
             </a>
         </div>
     )
