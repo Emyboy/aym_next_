@@ -12,6 +12,14 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <meta name="theme-color" content="#3858F6" />
+                    <meta
+                        name="description"
+                        content="African Youth Minds"
+                    />
+                    <link rel="icon" href="/logo.png" />
+                    <link rel="apple-touch-icon" href="/logo.png" />
+                    <link rel="manifest" href="/manifest.json" />
                     <link
                         rel="stylesheet"
                         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
