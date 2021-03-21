@@ -6,7 +6,7 @@ export default function EachTool({
     onClick
 }) {
     return (
-        <div onClick={onClick} className='text-center' style={{ width: '99px'}}>
+        <div onClick={onClick} className='text-center' style={{ width: '99px', cursor: 'pointer'}}>
             {icon}<br />
             <p className='m-0' style={{ fontSize: '10px'}}>{name}</p>
         </div>

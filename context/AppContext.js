@@ -13,7 +13,7 @@ export class AppContextProvider extends Component {
         this.state = {
             auth: null,
             categories: [],
-
+            builder: Global.BUILDER_MOCK,
 
 
             setContextState: this.setContextState.bind(this),
