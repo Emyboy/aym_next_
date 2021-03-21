@@ -101,6 +101,7 @@ class App extends Component {
                 propertyTag: null
             })
         }
+        console.log('CANVAS PROPS --', this.props)
     }
 
 
@@ -109,7 +110,6 @@ class App extends Component {
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
-        console.log('PROPS --', this.props)
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <Droppable droppableId="droppable">

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaHeading, FaParagraph, FaImage, FaLink } from 'react-icons/fa'
 import EachTool from './EachTool'
+import { ImQuotesLeft } from 'react-icons/im'
 
 
 export default function ToolBar({
@@ -30,6 +31,9 @@ export default function ToolBar({
             </a>
             <a>
                 <EachTool onClick={() => goToPropperty('text', 'link')} name='Link (URL)' icon={<FaLink size={15} />} />
+            </a>
+            <a>
+                <EachTool onClick={() => goToPropperty('text', 'link')} name='Qootes' icon={<ImQuotesLeft size={15} />} />
             </a>
         </div>
     )
