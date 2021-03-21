@@ -1,5 +1,6 @@
 export default {
     API_URL: process.env.NEXT_PUBLIC_API_KEY,
+    ICON_URL: 'https://firebasestorage.googleapis.com/v0/b/project-managemnt-a12b8.appspot.com/o/aym%2FAYM.png?alt=media&token=c0400067-a403-408d-a942-7c8e1b49a8e0',
     BUILDER_MOCK: [
         {
             id: 1,
