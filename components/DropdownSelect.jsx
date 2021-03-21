@@ -12,7 +12,8 @@ export default function DropdownSelect({
     onChange,
     value,
     isMulti,
-    label
+    label,
+    disabled
 }) {
 
     const [selectedOption, setSelectedOption] = useState(null)
@@ -26,6 +27,7 @@ export default function DropdownSelect({
         <div className="form-group">
             <label>{label}</label>
             <Select
+            isDisabled={disabled}
                 value={value}
                 onChange={onChange}
                 options={options}

@@ -23,7 +23,7 @@ export default withTheme((props) => {
         axios(Global.API_URL + '/auth/local', {
             method: 'POST',
             data: {
-                identifier: user ? user[0].email: userData[0].email,
+                identifier: user ? user[0].email : userData[0].email,
                 password: user ? user[0].uid : userData[0].uid,
             }
         })
@@ -79,7 +79,7 @@ export default withTheme((props) => {
 
     useEffect(() => {
         context.getAllCategory()
-    },[])
+    }, [])
 
     return (
         <header className="header axil-header  header-light header-sticky fixed-top"
@@ -680,10 +680,15 @@ export default withTheme((props) => {
                                         <a href="#"><MdHome size={20} /></a>
                                     </Link>
                                 </li>
+                                {
+                                    context.auth ?
+                                        <li className="icon">
+                                            <Link href='/editor'>
+                                                <a href="#"><MdModeEdit size={20} /></a>
+                                            </Link>
+                                        </li> : null
+                                }
 
-                                <li className="icon"><Link href='/create'>
-                                    <a href="#"><MdModeEdit size={20} /></a>
-                                </Link></li>
                                 {
                                     context.auth ?
                                         <li className='icon'>
@@ -694,9 +699,7 @@ export default withTheme((props) => {
                                             </Link>
                                         </li> :
                                         <li onClick={handleAuthentication} className='icon'>
-                                            <Link href='/user/849348984'>
-                                                <a href='#c'><RiUserFill size={20} /></a>
-                                            </Link>
+                                            <a href='#c'><RiUserFill size={20} /></a>
                                         </li>
                                 }
                             </ul>

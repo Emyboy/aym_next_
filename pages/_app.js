@@ -6,6 +6,7 @@ import '../assets/css/vendor/slick.css'
 import '../assets/css/style.css';
 import '../assets/css/App.css';
 import '../styles/globals.css';
+import 'react-activity/dist/react-activity.css';
 import Header from '../components/Header/Header';
 import Head from 'next/head'
 import { AppContextProvider } from '../context/AppContext';

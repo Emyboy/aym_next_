@@ -7,33 +7,36 @@ import { useDropzone } from 'react-dropzone'
 import firebase from "firebase/app";
 import "firebase/storage";
 import { v4 as uuidv4 } from 'uuid';
-// import HTMLEditor from '../HTMLEditor';
+import HTMLEditor from '../HTMLEditor';
+import { useRouter } from 'next/router'
+import AppLoading from '../AppLoading';
 
 export default withTheme(props => {
-
+    const router = useRouter()
     const { context } = props;
 
     const [state, setState] = useState({
         loading: false,
-        fileData: null
+        fileData: null,
+        showPage: false
     })
     var storageRef = firebase.storage().ref();
-    
+
     const [data, setData] = useState({
         title: null,
         description: null,
         categories: [],
         category: [],
         body: null,
-        user_permissions: null,
+        users_permissions_user: null,
         image_url: null,
         src: null
     });
-    
+
     const deleteFile = (id) => {
         // Create a reference to the file to delete
         var desertRef = storageRef.child(`posts/${context.auth.user.id}/images/${id}_${context.auth.user.id}_1`);
-        
+
         // Delete the file
         desertRef.delete().then(() => {
             // File deleted successfully
@@ -43,7 +46,7 @@ export default withTheme(props => {
             console.log(error)
         });
     }
-    
+
     const sendToBackend = async (imageURL, storage_id) => {
         const post = {
             ...data,
@@ -52,7 +55,7 @@ export default withTheme(props => {
             image_url: imageURL,
             src: imageURL,
             storage_id,
-            user_permissions: props.context.auth.user.id,
+            users_permissions_user: props.context.auth ? props.context.auth.user.id : null,
         }
         console.log('sending --', post);
         axios(Global.API_URL + '/posts', {
@@ -60,34 +63,34 @@ export default withTheme(props => {
             data: post,
             headers: {
                 Authorization:
-                `Bearer ${context.auth.jwt}`,
+                    `Bearer ${context.auth.jwt}`,
             },
         })
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-            deleteFile(storage_id)
-        })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+                deleteFile(storage_id)
+            })
     }
-    
+
     const handleSubmit = async () => {
         const storage_id = uuidv4()
         var uploadTask = storageRef.child(`posts/${context.auth.user.id}/images/${storage_id}_${context.auth.user.id}_1`).put(state.fileData);
         await uploadTask.on('state_changed',
-        (snapshot) => {
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                console.log('Upload is paused');
-                break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                console.log('Upload is running');
-                break;
-            }
-        },
+            (snapshot) => {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            },
             (error) => {
                 alert(error)
                 return null
@@ -101,7 +104,6 @@ export default withTheme(props => {
         );
     }
 
-    
 
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
@@ -112,8 +114,16 @@ export default withTheme(props => {
 
     useEffect(() => {
         console.log('again')
+        if (!localStorage.getItem('auth')) {
+            router.push('/')
+        } else {
+            setState({ ...state, showPage: true })
+        }
     }, [])
 
+    // if (!state.showPage) {
+    //     return <AppLoading />
+    // } else
     return (
         <div className='bg-white pt-4'>
             <div className="container">
@@ -184,7 +194,7 @@ export default withTheme(props => {
 
                         <div className="col-lg-12">
                             <h5>Type Article Here.</h5>
-                            {/* <HTMLEditor /> */}
+                            <HTMLEditor />
                             <hr />
                             <div style={{
                                 display: 'flex',

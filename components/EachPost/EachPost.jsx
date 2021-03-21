@@ -3,30 +3,34 @@ import Link from 'next/link'
 import { FaFacebook } from 'react-icons/fa'
 import { AiFillInstagram, AiFillTwitterCircle, AiOutlineLink } from 'react-icons/ai'
 
-export default function EachPost() {
+export default function EachPost({
+    data
+}){
+    // console.log('EACH POST --', data)
     return (
         <div className="content-block post-list-view axil-control mt--30">
-            <div className="post-thumbnail">
-                <Link href='/post/9493488434/4'>
-                    <a href="post-details.html">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH6KQQQtnCi09Ja_Ic4sQ-dVkhH7dn3odFBQ&usqp=CAU" alt="Post Images" />
-                    </a>
-                </Link>
-            </div>
+            {
+                data.image_url ? <div className="post-thumbnail">
+                    <Link href={`/post/${data.title}/${data.id}`}>
+                        <a href="#details">
+                            <img src={data.image_url} alt="Post Images" />
+                        </a>
+                    </Link>
+                </div>:null
+            }
             <div className="post-content bg-color-white">
                 <div className="post-cat">
                     <div className="post-cat-list">
                         <a className="hover-flip-item-wrapper" href="#">
                             <span className="hover-flip-item">
-                                <span data-text="FOOD">FOOD</span>
+                                <span data-text="FOOD">{data.category.name.toUpperCase()}</span>
                             </span>
                         </a>
                     </div>
                 </div>
                 <h4 className="title">
-                    <Link href='/post/9493488434/4'>
-                        <a href="post-details.html">Security isn’t just a technology problem
-                                        it’s about design, too </a>
+                    <Link href={`/post/${data.title}/${data.id}`}>
+                        <a href="#details">{data.title} </a>
                     </Link>
                 </h4>
                 <div className="post-meta-wrapper">
@@ -35,7 +39,7 @@ export default function EachPost() {
                             <h6 className="post-author-name">
                                 <a className="hover-flip-item-wrapper" href="author.html">
                                     <span className="hover-flip-item">
-                                        <span data-text="Jane Ara">Jane Ara</span>
+                                        <span data-text="Jane Ara">{data.users_permissions_user.first_name} {data.users_permissions_user.last_name} </span>
                                     </span>
                                 </a>
                             </h6>
