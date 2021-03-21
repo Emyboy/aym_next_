@@ -39,7 +39,10 @@ export default function PropertyEditor({
                 </ul>
             </div>
             <h2 className='text-center'>Prop Edits</h2>
-            <textarea rows='8' onChange={e => setData({ ...data, content: e.target.value })} />
+            <textarea rows='8' onChange={e => {
+                // console.log('E --', e.target.value);
+                setData({ ...data, content: e.target.value })
+            }} />
             <h4>{state.property}</h4>
             <button className='btn btn-lg btn-success mb-5' onClick={add}>Add</button>
         </div>

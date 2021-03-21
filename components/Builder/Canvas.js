@@ -20,8 +20,8 @@ import RenderJSX from "./RenderJSX";
 // fake data generator
 const getItems = count =>
     Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${k}`,
-        content: `item ${k}`
+        id: `${k}`,
+        content: `${k}`
     }));
 
 // a little function to help us with reordering the result
@@ -58,7 +58,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: this.getItems(10),
+            // items: this.getItems(10),
         };
         this.onDragEnd = this.onDragEnd.bind(this);
         this.getItems = this.getItems.bind(this);
@@ -105,8 +105,6 @@ class App extends Component {
     }
 
 
-
-
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
@@ -119,7 +117,7 @@ class App extends Component {
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}
                         >
-                            {this.state.items.map((item, index) => {
+                            {this.props.state.builder.map((item, index) => {
                                 console.log('EACH ITEM --', item);
                                 return <Draggable key={item.id} draggableId={item.id} index={index}>
                                     {(provided, snapshot) => (
