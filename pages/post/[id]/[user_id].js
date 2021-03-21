@@ -1,9 +1,13 @@
 import React from 'react'
 import SidePanel from '../../../components/SidePanel/SidePanel'
+import Head from 'next/head'
 
 const id = props => {
     return (
         <div className='axil-post-list-area post-listview-visible-color axil-section-gap is-active'>
+            <Head>
+                <meta property="og:type" content="article" />
+            </Head>
             <div className='container'>
                 <div className='row'>
                     <div className="col-lg-8 bg-color-white">
