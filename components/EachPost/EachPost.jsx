@@ -12,7 +12,7 @@ export default function EachPost({
             {
                 data.image_url ? <div className="post-thumbnail">
                     <Link href={`/post/${data.title}/${data.id}`}>
-                        <a href="#details">
+                        <a href="">
                             <img src={data.image_url} alt="Post Images" />
                         </a>
                     </Link>
@@ -33,22 +33,22 @@ export default function EachPost({
                 </div>
                 <h4 className="title">
                     <Link href={`/post/${data.title}/${data.id}`}>
-                        <a href="#details">{data.title} </a>
+                        {data.title}
                     </Link>
                 </h4>
                 <div className="post-meta-wrapper">
                     <div className="post-meta">
                         <div className="content">
                             <h6 className="post-author-name">
-                                <Link href={`/user/${data.users_permissions_user.username}`}>
-                                    <a className="hover-flip-item-wrapper" href="#author">
+                                <a className="hover-flip-item-wrapper" href={`/user/${data.users_permissions_user.username}`}>
+                                <Link className="hover-flip-item-wrapper" href={`/user/${data.users_permissions_user.username}`}>
                                         <span className="hover-flip-item">
                                             <span data-text={`${data.users_permissions_user.first_name} ${data.users_permissions_user.last_name}`}>
                                                 {`${data.users_permissions_user.first_name} ${data.users_permissions_user.last_name}`}
                                             </span>
                                         </span>
-                                    </a>
                                 </Link>
+                                    </a>
                             </h6>
                             <ul className="post-meta-list">
                                 <li>Feb 17, 2019</li>
