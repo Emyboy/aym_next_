@@ -40,11 +40,15 @@ export default function EachPost({
                     <div className="post-meta">
                         <div className="content">
                             <h6 className="post-author-name">
-                                <a className="hover-flip-item-wrapper" href="author.html">
-                                    <span className="hover-flip-item">
-                                        <span data-text={`${data.users_permissions_user.first_name}' ' ${data.users_permissions_user.last_name}`}>{data.users_permissions_user.first_name} {data.users_permissions_user.last_name} </span>
-                                    </span>
-                                </a>
+                                <Link href={`/user/${data.users_permissions_user.username}`}>
+                                    <a className="hover-flip-item-wrapper" href="#author">
+                                        <span className="hover-flip-item">
+                                            <span data-text={`${data.users_permissions_user.first_name} ${data.users_permissions_user.last_name}`}>
+                                                {`${data.users_permissions_user.first_name} ${data.users_permissions_user.last_name}`}
+                                            </span>
+                                        </span>
+                                    </a>
+                                </Link>
                             </h6>
                             <ul className="post-meta-list">
                                 <li>Feb 17, 2019</li>

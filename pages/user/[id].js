@@ -8,10 +8,12 @@ import { FaPowerOff } from 'react-icons/fa'
 import { MdModeEdit } from 'react-icons/md'
 import Heading from '../../components/Heading/Heading'
 import { withTheme } from '../../context/AppContext'
+import Global from '../../Global'
 
-export default withTheme((props) => {
+const UserProfile = withTheme((props) => {
 
     console.log(props);
+    const { data } = props;
     return (
         <div>
             <div className="axil-author-area axil-author-banner bg-color-grey">
@@ -23,18 +25,18 @@ export default withTheme((props) => {
                                     <div className='col-md-3'>
                                         <div className="thumbnail">
                                             <a href="#">
-                                                <img src="https://hubstaff-talent.s3.amazonaws.com/avatars/2216852fe9157a7d1c79667d906cf661.jpg" alt="Author Images" style={{ width: '100%' }} />
+                                                <img src={data.avatar_url} alt="Author Images" style={{ width: '100%' }} />
                                             </a>
                                         </div>
                                     </div>
                                     <div className='col-md-6'>
                                         <div className="media-body">
                                             <div className="author-info">
-                                                <h1 className="title"><a href="#">Rahabi Ahmed Khan</a></h1>
-                                                <span className="b3 subtitle">Sr. UX Designer</span>
+                                                <h1 className="title"><a href="#">{data.first_name+' '+data.last_name}</a></h1>
+                                                <span className="b3 subtitle">{data.title}</span>
                                             </div>
                                             <div className="content">
-                                                <p className="b1 description">At 40+ years old, my favorite compliment is being told that I look like my mom. Seeing myself in her image, like this daughter up top, makes me so proud of how far I’ve come, and so thankful for where I come from</p>
+                                                <p className="b1 description">{data.bio}</p>
                                                 <ul className="social-share-transparent size-md">
                                                     <li><a href="#"><FaFacebook size={20} /></a></li>
                                                     <li><a href="#"><AiFillInstagram size={20} /></a></li>
@@ -81,3 +83,13 @@ export default withTheme((props) => {
         </div>
     )
 });
+
+UserProfile.getInitialProps = async (ctx) => {
+    const id = ctx.query.id;
+    console.log('CONTEXT ---', id)
+    const res = await fetch(Global.API_URL + `/users/?username=${id}`)
+    const json = await res.json()
+    return { data: json[0] }
+}
+
+export default UserProfile;

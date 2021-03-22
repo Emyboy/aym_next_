@@ -3,6 +3,7 @@ import SidePanel from '../../../components/SidePanel/SidePanel'
 import { useRouter } from 'next/router'
 import Global from '../../../Global'
 import Image from 'next/image'
+import Link from 'next/link'
 import Head from 'next/head';
 const parse = require('html-react-parser')
 
@@ -10,11 +11,11 @@ const DetailsPage = (props) => {
     console.log('details -', props)
     const { data } = props;
     useEffect(() => {
-        document.getElementById('body').innerHTML+= data.body
-    },[])
+        document.getElementById('body').innerHTML += data.body
+    }, [])
     return <div className='post-single-wrapper axil-section-gap '>
         <Head>
-            <title>African Youth Minds</title>
+            <title>African Youth Minds - {data.title}</title>
             <meta property="og:title" content={data.title} />
             <meta property="og:description" content={data.description} />
             <meta property="og:image" content={data.image_url} />
@@ -51,40 +52,45 @@ const DetailsPage = (props) => {
                             </ul>
                         </div>
 
-                        <div className="about-author">
-                            <div className="media">
-                                <div className="thumbnail">
-                                    <a href="#">
-                                        <img src="assets/images/post-images/author/author-b1.png" alt="Author Images" />
-                                    </a>
-                                </div>
-                                <div className="media-body">
-                                    <div className="author-info">
-                                        <h5 className="title">
-                                            <a className="hover-flip-item-wrapper" href="#">
-                                                <span className="hover-flip-item">
-                                                    <span data-text="Rahabi Ahmed Khan">Rahabi Ahmed Khan</span>
-                                                </span>
-                                            </a>
-                                        </h5>
-                                        <span className="b3 subtitle">Sr. UX Designer</span>
+                        {
+                            data.users_permissions_user ?
+                                <div className="about-author">
+                                    <div className="media">
+                                        <div className="thumbnail">
+                                            <Link href={`/user/${data.users_permissions_user.username}`}>
+                                                <a href="#">
+                                                    <img src={data.users_permissions_user.avatar_url} alt={data.users_permissions_user.first_name + "'s Images"} />
+                                                </a>
+                                            </Link>
+                                        </div>
+                                        <div className="media-body">
+                                            <div className="author-info">
+                                                <h5 className="title">
+                                                    <Link href={`/user/${data.users_permissions_user.username}`}>
+                                                        <a className="hover-flip-item-wrapper" href="#">
+                                                            <span className="hover-flip-item">
+                                                                <span data-text={`${data.users_permissions_user.first_name} ${data.users_permissions_user.last_name}`}>{data.users_permissions_user.first_name + ' ' + data.users_permissions_user.last_name}</span>
+                                                            </span>
+                                                        </a>
+                                                    </Link>
+                                                </h5>
+                                                <span className="b3 subtitle">{data.users_permissions_user.title}</span>
+                                            </div>
+                                            <div className="content">
+                                                <p className="b1 description">{data.users_permissions_user.bio}</p>
+                                                <ul className="social-share-transparent size-md">
+                                                    <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
+                                                    <li><a href="#"><i className="fab fa-instagram"></i></a></li>
+                                                    <li><a href="#"><i className="fab fa-twitter"></i></a></li>
+                                                    <li><a href="#"><i className="far fa-envelope"></i></a></li>
+                                                    <li><a href="#"><i className="fab fa-linkedin-in"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="content">
-                                        <p className="b1 description">At 29 years old, my favorite compliment is being
-                                        told that I look like my mom. Seeing myself in her image, like this
-                                        daughter up top, makes me so proud of how far I’ve come, and so thankful
-                                                for where I come from.</p>
-                                        <ul className="social-share-transparent size-md">
-                                            <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i className="fab fa-instagram"></i></a></li>
-                                            <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i className="far fa-envelope"></i></a></li>
-                                            <li><a href="#"><i className="fab fa-linkedin-in"></i></a></li>
-                                        </ul>
-                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                : null
+                        }
 
                         <div className="axil-comment-area">
                             <div className="axil-total-comment-post">
