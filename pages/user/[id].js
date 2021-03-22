@@ -25,9 +25,9 @@ const UserProfile = withTheme((props) => {
             <div>
                 <Head>
                     <title>{`${data.first_name} ${data.last_name}`} - {`${data.title || ''}`} | African Youth Minds </title>
-                    {/* <meta property="og:title" content={`${data.first_name} ${data.last_name} | ${data.title}`} />
+                    <meta property="og:title" content={`${data.first_name} ${data.last_name} | ${data.title}`} />
                     <meta property="og:description" content={data.bio} />
-                    <meta property="og:image" content={data.avatar_url} /> */}
+                    <meta property="og:image" content={data.avatar_url} />
                 </Head>
                 <NextSeo
                     openGraph={{
