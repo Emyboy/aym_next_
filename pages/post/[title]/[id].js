@@ -3,6 +3,7 @@ import SidePanel from '../../../components/SidePanel/SidePanel'
 import { useRouter } from 'next/router'
 import Global from '../../../Global'
 import Image from 'next/image'
+import Head from 'next/head';
 const parse = require('html-react-parser')
 
 const DetailsPage = (props) => {
@@ -12,6 +13,12 @@ const DetailsPage = (props) => {
         document.getElementById('body').innerHTML+= data.body
     },[])
     return <div className='post-single-wrapper axil-section-gap '>
+        <Head>
+            <title>African Youth Minds</title>
+            <meta property="og:title" content={data.title} />
+            <meta property="og:description" content={data.description} />
+            <meta property="og:image" content={data.image_url} />
+        </Head>
         <div className='container'>
             <div className='row'>
 
