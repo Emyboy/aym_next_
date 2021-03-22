@@ -11,6 +11,7 @@ import { withTheme } from '../../context/AppContext'
 import Global from '../../Global'
 import AppLoading from '../../components/AppLoading'
 import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 
 const UserProfile = withTheme((props) => {
 
@@ -24,10 +25,32 @@ const UserProfile = withTheme((props) => {
             <div>
                 <Head>
                     <title>{`${data.first_name} ${data.last_name}`} - {`${data.title}`} | African Youth Minds </title>
-                    <meta property="og:title" content={`${data.first_name} ${data.last_name} | ${data.title}`} />
+                    {/* <meta property="og:title" content={`${data.first_name} ${data.last_name} | ${data.title}`} />
                     <meta property="og:description" content={data.bio} />
-                    <meta property="og:image" content={data.avatar_url} />
+                    <meta property="og:image" content={data.avatar_url} /> */}
                 </Head>
+                <NextSeo
+                    openGraph={{
+                        title: `${data.first_name} ${data.last_name}`,
+                        description: data.bio||'',
+                        url: `https://africanyouthminds.com/user/${data.username}`,
+                        type: 'profile',
+                        profile: {
+                            firstName: data.first_name,
+                            lastName: data.last_name,
+                            username: data.username,
+                            gender: data.gender,
+                        },
+                        images: [
+                            {
+                                url: data.avatar_url,
+                                width: 850,
+                                height: 650,
+                                alt: data.first_name + '\'s Profile Photo',
+                            },
+                        ],
+                    }}
+                />
                 <div className="axil-author-area axil-author-banner bg-color-grey">
                     <div className="container">
                         <div className="row">

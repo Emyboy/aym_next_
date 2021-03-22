@@ -36,7 +36,7 @@ const DetailsPage = (props) => {
                     // expirationTime: '2022-12-21T22:04:11Z',
                     section: data.category.name,
                     authors: [
-                        `https://africanyouthminds.com/user/${data.users_permissions_user.id}`,
+                        `https://africanyouthminds.com/user/${data.users_permissions_user.username}`,
                     ],
                     tags: data.categories.map(val => val.name),
                 },
