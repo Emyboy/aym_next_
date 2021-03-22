@@ -35,9 +35,9 @@ export default withTheme(props=> {
           <div className='row'>
             <div className='col-lg-8 col-xl-8'>
 
-             {/* {data.map((val, i) => {
+             {data.map((val, i) => {
                return <EachPost key={i} data={val} />
-             })} */}
+             })}
 
             </div>
             <SidePanel />
