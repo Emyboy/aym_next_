@@ -3,10 +3,14 @@ import SidePanel from '../../../components/SidePanel/SidePanel'
 import { useRouter } from 'next/router'
 import Global from '../../../Global'
 import Image from 'next/image'
+const parse = require('html-react-parser')
 
 const DetailsPage = (props) => {
     console.log('details -', props)
     const { data } = props;
+    useEffect(() => {
+        document.getElementById('body').innerHTML+= data.body
+    },[])
     return <div className='post-single-wrapper axil-section-gap '>
         <div className='container'>
             <div className='row'>
@@ -16,7 +20,7 @@ const DetailsPage = (props) => {
                         <h1 className="has-medium-font-size h3">{data.title}</h1>
                         <img src={data.image_url} width='100%' height='60%' />
 
-
+                        <div id='body'></div>
 
                         <hr />
                         <div className="tagcloud">

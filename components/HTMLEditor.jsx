@@ -3,6 +3,7 @@ import { withTheme } from '../context/AppContext';
 
 
 export default withTheme((props) => {
+    const { onChange } = props;
     const editorRef = useRef()
     const [editorLoaded, setEditorLoaded] = useState(false)
     const { CKEditor, ClassicEditor } = editorRef.current || {};
@@ -41,6 +42,7 @@ export default withTheme((props) => {
                         const data = editor.getData();
                         // console.log({ event, editor, data });
                         setState({ ...state, html: data })
+                        onChange(data)
                     }}
                     onBlur={(event, editor) => {
                         // console.log('Blur.', editor);

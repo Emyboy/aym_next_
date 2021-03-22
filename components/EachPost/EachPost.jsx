@@ -5,7 +5,7 @@ import { AiFillInstagram, AiFillTwitterCircle, AiOutlineLink } from 'react-icons
 
 export default function EachPost({
     data
-}){
+}) {
     // console.log('EACH POST --', data)
     return (
         <div className="content-block post-list-view axil-control mt--30">
@@ -16,16 +16,19 @@ export default function EachPost({
                             <img src={data.image_url} alt="Post Images" />
                         </a>
                     </Link>
-                </div>:null
+                </div> : null
             }
             <div className="post-content bg-color-white">
                 <div className="post-cat">
                     <div className="post-cat-list">
-                        <a className="hover-flip-item-wrapper" href="#">
-                            <span className="hover-flip-item">
-                                <span data-text="FOOD">{data.category.name.toUpperCase()}</span>
-                            </span>
-                        </a>
+                        {
+                            data.category ?
+                                <a className="hover-flip-item-wrapper" href="#">
+                                    <span className="hover-flip-item">
+                                        <span data-text="FOOD">{data.category.name.toUpperCase()}</span>
+                                    </span>
+                                </a> : null
+                        }
                     </div>
                 </div>
                 <h4 className="title">

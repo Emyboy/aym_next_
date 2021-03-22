@@ -194,7 +194,7 @@ export default withTheme(props => {
 
                         <div className="col-lg-12">
                             <h5>Type Article Here.</h5>
-                            <HTMLEditor />
+                            <HTMLEditor onChange={e => setData({...data, body: e })}/>
                             <hr />
                             <div style={{
                                 display: 'flex',
