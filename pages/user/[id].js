@@ -10,6 +10,7 @@ import Heading from '../../components/Heading/Heading'
 import { withTheme } from '../../context/AppContext'
 import Global from '../../Global'
 import AppLoading from '../../components/AppLoading'
+import Head from 'next/head'
 
 const UserProfile = withTheme((props) => {
 
@@ -21,6 +22,12 @@ const UserProfile = withTheme((props) => {
     } else
         return (
             <div>
+                <Head>
+                    <title>African Youth Minds - {`${data.first_name} ${data.last_name}`}</title>
+                    <meta property="og:title" content={`${data.first_name} ${data.last_name}`} />
+                    <meta property="og:description" content={data.bio} />
+                    <meta property="og:image" content={data.avatar_url} />
+                </Head>
                 <div className="axil-author-area axil-author-banner bg-color-grey">
                     <div className="container">
                         <div className="row">
