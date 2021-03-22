@@ -42,7 +42,7 @@ export default function EachPost({
                             <h6 className="post-author-name">
                                 <a className="hover-flip-item-wrapper" href="author.html">
                                     <span className="hover-flip-item">
-                                        <span data-text="Jane Ara">{data.users_permissions_user.first_name} {data.users_permissions_user.last_name} </span>
+                                        <span data-text={`${data.users_permissions_user.first_name}' ' ${data.users_permissions_user.last_name}`}>{data.users_permissions_user.first_name} {data.users_permissions_user.last_name} </span>
                                     </span>
                                 </a>
                             </h6>
