@@ -9,79 +9,84 @@ import { MdModeEdit } from 'react-icons/md'
 import Heading from '../../components/Heading/Heading'
 import { withTheme } from '../../context/AppContext'
 import Global from '../../Global'
+import AppLoading from '../../components/AppLoading'
 
 const UserProfile = withTheme((props) => {
 
     console.log(props);
     const { data } = props;
-    return (
-        <div>
-            <div className="axil-author-area axil-author-banner bg-color-grey">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="about-author">
-                                <div className="media row">
-                                    <div className='col-md-3'>
-                                        <div className="thumbnail">
-                                            <a href="#">
-                                                <img src={data.avatar_url} alt="Author Images" style={{ width: '100%' }} />
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className='col-md-6'>
-                                        <div className="media-body">
-                                            <div className="author-info">
-                                                <h1 className="title"><a href="#">{data.first_name+' '+data.last_name}</a></h1>
-                                                <span className="b3 subtitle">{data.title}</span>
-                                            </div>
-                                            <div className="content">
-                                                <p className="b1 description">{data.bio}</p>
-                                                <ul className="social-share-transparent size-md">
-                                                    <li><a href="#"><FaFacebook size={20} /></a></li>
-                                                    <li><a href="#"><AiFillInstagram size={20} /></a></li>
-                                                    <li><a href="#"><AiFillTwitterCircle size={20} /></a></li>
-                                                    <li><a href="#"><AiOutlineLink size={20} /></a></li>
-                                                </ul>
+
+    if (!data) {
+        return <AppLoading />
+    } else
+        return (
+            <div>
+                <div className="axil-author-area axil-author-banner bg-color-grey">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="about-author">
+                                    <div className="media row">
+                                        <div className='col-md-3'>
+                                            <div className="thumbnail">
+                                                <a href="#">
+                                                    <img src={data.avatar_url} alt="Author Images" style={{ width: '100%' }} />
+                                                </a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className='col-md-3 mt-3'>
-                                        <button className='btn p-3 mt-1 h5 text-white button-rounded btn-primary'>
-                                            <RiUserFollowFill size={20} />{' '}
+                                        <div className='col-md-6'>
+                                            <div className="media-body">
+                                                <div className="author-info">
+                                                    <h1 className="title"><a href="#">{data.first_name + ' ' + data.last_name}</a></h1>
+                                                    <span className="b3 subtitle">{data.title}</span>
+                                                </div>
+                                                <div className="content">
+                                                    <p className="b1 description">{data.bio}</p>
+                                                    <ul className="social-share-transparent size-md">
+                                                        <li><a href="#"><FaFacebook size={20} /></a></li>
+                                                        <li><a href="#"><AiFillInstagram size={20} /></a></li>
+                                                        <li><a href="#"><AiFillTwitterCircle size={20} /></a></li>
+                                                        <li><a href="#"><AiOutlineLink size={20} /></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='col-md-3 mt-3'>
+                                            <button className='btn p-3 mt-1 h5 text-white button-rounded btn-primary'>
+                                                <RiUserFollowFill size={20} />{' '}
                                             Follow
                                         </button>
-                                        <button className='btn p-3 mt-1 h5 text-white button-rounded btn-success'>
-                                            <MdModeEdit size={20}  />{' '}
+                                            <button className='btn p-3 mt-1 h5 text-white button-rounded btn-success'>
+                                                <MdModeEdit size={20} />{' '}
                                             Edit</button>
-                                        <button className='btn p-3 mt-1 h5 text-white button-rounded btn-danger'>
-                                            <FaPowerOff size={20}  />{' '}
+                                            <button className='btn p-3 mt-1 h5 text-white button-rounded btn-danger'>
+                                                <FaPowerOff size={20} />{' '}
                                             Logout
                                             </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className='axil-post-list-area axil-section-gap bg-color-white'>
-                <div className='container'>
-                    <div className='row'>
-                        <Heading text='Authors Posts'/>
-                        <div className='col-lg-8 col-xl-8'>
-                            {/* <EachPost />
+                <div className='axil-post-list-area axil-section-gap bg-color-white'>
+                    <div className='container'>
+                        <div className='row'>
+                            <Heading text='Authors Posts' />
+                            <div className='col-lg-8 col-xl-8'>
+                                {/* <EachPost />
                             <EachPost />
                             <EachPost />
                             <EachPost /> */}
+                            </div>
+                            <SidePanel />
                         </div>
-                        <SidePanel />
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        )
 });
 
 UserProfile.getInitialProps = async (ctx) => {
