@@ -5,7 +5,11 @@ import Global from '../../../Global'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head';
+import { BlogJsonLd, NextSeo } from 'next-seo';
+
+
 const parse = require('html-react-parser')
+
 
 const DetailsPage = (props) => {
     console.log('details -', props)
@@ -14,12 +18,49 @@ const DetailsPage = (props) => {
         document.getElementById('body').innerHTML += data.body
     }, [])
     return <div className='post-single-wrapper axil-section-gap '>
-        <Head>
+        {/* <Head>
             <title>African Youth Minds - {data.title}</title>
             <meta property="og:title" content={data.title} />
             <meta property="og:description" content={data.description} />
             <meta property="og:image" content={data.image_url} />
-        </Head>
+        </Head> */}
+        <NextSeo
+            openGraph={{
+                title: `African Youth Minds - ${data.title}`,
+                description: data.description,
+                url: `https://africanyouthminds.com/post/${data.title}/${data.id}`,
+                type: 'article',
+                article: {
+                    publishedTime: data.published_at,
+                    modifiedTime: data.updated_at,
+                    // expirationTime: '2022-12-21T22:04:11Z',
+                    section: data.category.name,
+                    authors: [
+                        `https://africanyouthminds.com/user/${data.users_permissions_user.id}`,
+                    ],
+                    tags: data.categories.map(val => val.name),
+                },
+                images: [
+                    {
+                        url: data.image_url,
+                        width: 850,
+                        height: 650,
+                        alt: 'Photo of ' + data.title,
+                    },
+                ],
+            }}
+        />
+        <BlogJsonLd
+            url={`https://africanyouthminds.com/post/${data.title}/${data.id}`}
+            title={data.title}
+            images={[
+                data.image_url,
+            ]}
+            datePublished={data.published_at}
+            dateModified={data.updated_at}
+            authorName={`${data.users_permissions_user.first_name} ${data.users_permissions_user.last_name}`}
+            description={data.description}
+        />
         <div className='container'>
             <div className='row'>
 

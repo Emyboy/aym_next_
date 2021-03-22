@@ -23,8 +23,8 @@ const UserProfile = withTheme((props) => {
         return (
             <div>
                 <Head>
-                    <title>African Youth Minds - {`${data.first_name} ${data.last_name}`}</title>
-                    <meta property="og:title" content={`${data.first_name} ${data.last_name}`} />
+                    <title>{`${data.first_name} ${data.last_name}`} - {`${data.title}`} | African Youth Minds </title>
+                    <meta property="og:title" content={`${data.first_name} ${data.last_name} | ${data.title}`} />
                     <meta property="og:description" content={data.bio} />
                     <meta property="og:image" content={data.avatar_url} />
                 </Head>
