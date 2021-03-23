@@ -22,11 +22,11 @@ export default withTheme(props=> {
         <title>African Youth Minds</title>
         <link rel="icon" href="/logo.png" />
         <meta name="theme-color" content={Global.THEME_COLOR} />
-        <meta name="description" content="AYM IS A Youth blog THAT SHOW THE WORLD YOUTHS WITH INCREDIBLE SKILLS" />
+        <meta name="description" content="AYM is a Youth blog that show the world youths with incredible skills and minds" />
         <link rel="apple-touch-icon" href="/logo.png" />
 
         <meta property="og:title" content="African Youth Minds" />
-        <meta property="og:description" content="AYM IS A Youth blog THAT SHOW THE WORLD YOUTHS WITH INCREDIBLE SKILLS" />
+        <meta property="og:description" content="AYM is a Youth blog that show the world youths with incredible skills and minds" />
         <meta property="og:image" content={Global.ICON_URL} />
       </Head>
       {/* <Google /> */}

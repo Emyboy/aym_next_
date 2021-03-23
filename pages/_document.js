@@ -24,7 +24,7 @@ class MyDocument extends Document {
                     <link rel="apple-touch-icon" href="/logo.png" />
                     <link rel="manifest" href="/manifest.json" />
                     <meta property="og:title" content="African Youth Minds" />
-                    <meta property="og:description" content="AYM is a Youth blog that show the world youths with incredible skills" />
+                    <meta property="og:description" content="AYM is a Youth blog that show the world youths with incredible skills and minds" />
                     <meta property="og:image" content={Global.ICON_URL} />
                     <link
                         rel="stylesheet"

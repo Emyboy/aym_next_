@@ -18,13 +18,15 @@ const DetailsPage = (props) => {
         document.getElementById('body').innerHTML += data.body
     }, [])
     return <div className='post-single-wrapper axil-section-gap '>
-        {/* <Head>
-            <title>African Youth Minds - {data.title}</title>
-            <meta property="og:title" content={data.title} />
+        <Head>
+            {/* <title>African Youth Minds - {data.title}</title> */}
+            {/* <meta property="og:title" content={data.title} />
             <meta property="og:description" content={data.description} />
-            <meta property="og:image" content={data.image_url} />
-        </Head> */}
+            <meta property="og:image" content={data.image_url} /> */}
+        </Head>
         <NextSeo
+            title={`African Youth Minds - ${data.title}`}
+            description={data.description}
             openGraph={{
                 title: `African Youth Minds - ${data.title}`,
                 description: data.description,
