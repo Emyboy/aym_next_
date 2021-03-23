@@ -13,7 +13,7 @@ import axios from 'axios';
 initFirebase();
 
 
-export default withTheme(props=> {
+const HomePage = withTheme((props=> {
   // console.log('INDEX PROPS --',props);
   const { data } = props;
   return (
@@ -47,22 +47,15 @@ export default withTheme(props=> {
 
     </div>
   )
-});
+}))
 
-export async function getStaticProps(context) {
-  const res = await fetch(Global.API_URL+'/posts')
+
+
+HomePage.getInitialProps = async (ctx) => {
+  const res = await fetch(Global.API_URL + '/posts')
   const data = await res.json()
 
-  // if (!data) {
-  //   return {
-  //     redirect: {
-  //       destination: '/',
-  //       permanent: false,
-  //     },
-  //   }
-  // }
-
-  return {
-    props: { data }, // will be passed to the page component as props
-  }
+  return { data }
 }
+
+export default HomePage;
