@@ -16,7 +16,7 @@ import { NextSeo } from 'next-seo'
 const UserProfile = withTheme((props) => {
 
     console.log(props);
-    const { data } = props;
+    const { data, recent } = props;
 
     if (!data) {
         return <AppLoading />
@@ -111,7 +111,7 @@ const UserProfile = withTheme((props) => {
                             <EachPost />
                             <EachPost /> */}
                             </div>
-                            <SidePanel />
+                            <SidePanel data={recent} />
                         </div>
                     </div>
                 </div>
@@ -122,9 +122,11 @@ const UserProfile = withTheme((props) => {
 UserProfile.getInitialProps = async (ctx) => {
     const id = ctx.query.id;
     console.log('CONTEXT ---', id)
+    const posts = await fetch(Global.API_URL + '/posts')
+    const allPosts = await posts.json()
     const res = await fetch(Global.API_URL + `/users/?username=${id}`)
     const json = await res.json()
-    return { data: json[0] }
+    return { data: json[0], recent: allPosts }
 }
 
 export default UserProfile;
