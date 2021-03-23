@@ -29,7 +29,7 @@ const UserProfile = withTheme((props) => {
                     <meta property="og:description" content={data.bio} />
                     <meta property="og:image" content={data.avatar_url} />
                 </Head>
-                <NextSeo
+                {/* <NextSeo
                     openGraph={{
                         title: `${data.first_name} ${data.last_name}`,
                         description: data.bio || '',
@@ -50,7 +50,7 @@ const UserProfile = withTheme((props) => {
                             },
                         ],
                     }}
-                />
+                /> */}
                 <div className="axil-author-area axil-author-banner bg-color-grey">
                     <div className="container">
                         <div className="row">
