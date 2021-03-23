@@ -40,7 +40,7 @@ export default withTheme(props=> {
              })}
 
             </div>
-            <SidePanel />
+            <SidePanel data={data} />
           </div>
         </div>
       </div>

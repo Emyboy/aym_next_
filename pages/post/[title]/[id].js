@@ -13,7 +13,7 @@ const parse = require('html-react-parser')
 
 const DetailsPage = (props) => {
     console.log('details -', props)
-    const { data } = props;
+    const { data, recent } = props;
     useEffect(() => {
         document.getElementById('body').innerHTML += data.body
     }, [])
@@ -312,7 +312,7 @@ const DetailsPage = (props) => {
                     </div>
                 </div>
 
-                <SidePanel />
+                <SidePanel data={recent} />
             </div>
         </div>
     </div>
@@ -321,10 +321,13 @@ const DetailsPage = (props) => {
 DetailsPage.getInitialProps = async (ctx) => {
     const id = ctx.query.id;
     const title = ctx.query.title;
+    const posts = await fetch(Global.API_URL + '/posts')
+    const allPosts = await posts.json()
     console.log('CONTEXT ---', id, title)
     const res = await fetch(Global.API_URL + `/posts/${id}`)
     const json = await res.json()
-    return { data: json }
+
+    return { data: json, recent: allPosts }
 }
 
 export default DetailsPage;

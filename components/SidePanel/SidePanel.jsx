@@ -4,7 +4,10 @@ import { FaFacebook } from 'react-icons/fa'
 import { AiFillInstagram, AiFillTwitterCircle, AiOutlineLink, AiFillLinkedin } from 'react-icons/ai'
 import EachCat from '../EachCat/EachCat'
 
-export default function SidePanel() {
+export default function SidePanel({
+    data
+}) {
+    console.log('SIDE PANEL DATA ---', data)
     return (
         <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
             <div className="sidebar-inner">
@@ -21,10 +24,11 @@ export default function SidePanel() {
                 <div className="axil-single-widget widget widget_postlist mb--30">
                     <h5 className="widget-title">Popular on Blogar</h5>
                     <div className="post-medium-block">
-                        <EachPost2 />
-                        <EachPost2 />
-                        <EachPost2 />
-                        <EachPost2 />
+                        {
+                            data.map((val, i) => {
+                                return <EachPost2 data={val} key={i} />
+                            })
+                        }
                     </div>
 
                 </div>
