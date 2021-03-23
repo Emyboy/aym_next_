@@ -14,6 +14,7 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <meta name="google-site-verification" content="SGNQl2x48lINsICO2MdEckM_n8fCnXFuH6ZyyGRg-YQ" />
                     <meta name="theme-color" content="#3858F6" />
                     <meta
                         name="description"
