@@ -6,17 +6,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head';
 import { BlogJsonLd, NextSeo } from 'next-seo';
+import PageNotFound from '../../../components/PageNotFound'
 
 
 const parse = require('html-react-parser')
 
 
 const DetailsPage = (props) => {
-    console.log('details -', props)
-    const { data, recent } = props;
+    // console.log('details -', props)
+    const { data, recent, status } = props;
     useEffect(() => {
-        document.getElementById('body').innerHTML += data.body
+        if (status === 200) {
+            document.getElementById('body').innerHTML += data.body
+        }
     }, [])
+
+    if(status !== 200){
+        return <PageNotFound />
+    }
     return <div className='post-single-wrapper axil-section-gap '>
         <Head>
             {/* <title>African Youth Minds - {data.title}</title> */}
@@ -25,10 +32,10 @@ const DetailsPage = (props) => {
             <meta property="og:image" content={data.image_url} /> */}
         </Head>
         <NextSeo
-            title={`African Youth Minds - ${data.title}`}
+            title={`${data.title} - African Youth Minds`}
             description={data.description}
             openGraph={{
-                title: `African Youth Minds - ${data.title}`,
+                title: `${data.title} - African Youth Minds`,
                 description: data.description,
                 url: `https://africanyouthminds.com/post/${data.title}/${data.id}`,
                 type: 'article',
@@ -75,12 +82,17 @@ const DetailsPage = (props) => {
 
                         <hr />
                         <div className="tagcloud">
-                            <a href="#">Design</a>
+                            {
+                                data.categories ? data.categories.map((val, i) => {
+                                    return <Link key={i} href={`/category/${val.name}`}>{val.name}</Link>
+                                }):null
+                            }
+                            {/* <a href="#">Design</a>
                             <a href="#">Life Style</a>
                             <a href="#">Web Design</a>
                             <a href="#">Development</a>
                             <a href="#">Design</a>
-                            <a href="#">Life Style</a>
+                            <a href="#">Life Style</a> */}
                         </div>
 
                         <div className="social-share-block">
@@ -321,15 +333,18 @@ const DetailsPage = (props) => {
 }
 
 DetailsPage.getInitialProps = async (ctx) => {
-    const id = ctx.query.id;
-    const title = ctx.query.title;
+    
     const posts = await fetch(Global.API_URL + '/posts')
     const allPosts = await posts.json()
+    
+    const id = ctx.query.id;
+    const title = ctx.query.title;
     console.log('CONTEXT ---', id, title)
     const res = await fetch(Global.API_URL + `/posts/${id}`)
     const json = await res.json()
+    console.log('JSON ---', json, res.status);
 
-    return { data: json, recent: allPosts }
+    return { data: json, recent: allPosts, status: res.status }
 }
 
 export default DetailsPage;

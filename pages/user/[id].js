@@ -12,24 +12,30 @@ import Global from '../../Global'
 import AppLoading from '../../components/AppLoading'
 import Head from 'next/head'
 import { NextSeo } from 'next-seo'
+import PageNotFound from '../../components/PageNotFound'
+import EachPost2 from '../../components/EachPost2/EachPost2'
 
 const UserProfile = withTheme((props) => {
 
-    console.log(props);
-    const { data, recent } = props;
+    const { data, recent, status } = props;
+    // console.log('PROFILE PROPS ---', props);
 
-    if (!data) {
-        return <AppLoading />
-    } else
-        return (
-            <div>
-                <Head>
-                    <title>{`${data.first_name} ${data.last_name}`} - {`${data.title || ''}`} | African Youth Minds </title>
-                    <meta property="og:title" content={`${data.first_name} ${data.last_name} | ${data.title}`} />
-                    <meta property="og:description" content={data.bio} />
-                    <meta property="og:image" content={data.avatar_url} />
-                </Head>
-                {/* <NextSeo
+
+    // if (!data) {
+    //     return <AppLoading />
+    // } else
+        if (status !== 200) {
+            return <PageNotFound />
+        } else
+            return (
+                <div>
+                    <Head>
+                        <title>{`${data.first_name} ${data.last_name}`} - {`${data.title || ''}`} | African Youth Minds </title>
+                        <meta property="og:title" content={`${data.first_name} ${data.last_name} | ${data.title}`} />
+                        <meta property="og:description" content={data.bio} />
+                        <meta property="og:image" content={data.avatar_url} />
+                    </Head>
+                    {/* <NextSeo
                     openGraph={{
                         title: `${data.first_name} ${data.last_name}`,
                         description: data.bio || '',
@@ -51,72 +57,77 @@ const UserProfile = withTheme((props) => {
                         ],
                     }}
                 /> */}
-                <div className="axil-author-area axil-author-banner bg-color-grey">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="about-author">
-                                    <div className="media row">
-                                        <div className='col-md-3'>
-                                            <div className="thumbnail">
-                                                <a href="#">
-                                                    <img src={data.avatar_url} alt="Author Images" style={{ width: '100%' }} />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className='col-md-6'>
-                                            <div className="media-body">
-                                                <div className="author-info">
-                                                    <h1 className="title"><a href="#">{data.first_name + ' ' + data.last_name}</a></h1>
-                                                    <span className="b3 subtitle">{data.title}</span>
-                                                </div>
-                                                <div className="content">
-                                                    <p className="b1 description">{data.bio}</p>
-                                                    <ul className="social-share-transparent size-md">
-                                                        <li><a href="#"><FaFacebook size={20} /></a></li>
-                                                        <li><a href="#"><AiFillInstagram size={20} /></a></li>
-                                                        <li><a href="#"><AiFillTwitterCircle size={20} /></a></li>
-                                                        <li><a href="#"><AiOutlineLink size={20} /></a></li>
-                                                    </ul>
+                    <div className="axil-author-area axil-author-banner bg-color-grey">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="about-author">
+                                        <div className="media row">
+                                            <div className='col-md-3'>
+                                                <div className="thumbnail">
+                                                    <a href="#">
+                                                        <img src={data.avatar_url} alt="Author Images" style={{ width: '100%' }} />
+                                                    </a>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className='col-md-3 mt-3'>
-                                            <button className='btn p-3 mt-1 h5 text-white button-rounded btn-primary'>
-                                                <RiUserFollowFill size={20} />{' '}
+                                            <div className='col-md-6'>
+                                                <div className="media-body">
+                                                    <div className="author-info">
+                                                        <h1 className="title"><a href="#">{data.first_name + ' ' + data.last_name}</a></h1>
+                                                        <span className="b3 subtitle">{data.title}</span>
+                                                    </div>
+                                                    <div className="content">
+                                                        <p className="b1 description">{data.bio}</p>
+                                                        <ul className="social-share-transparent size-md">
+                                                            <li><a href="#"><FaFacebook size={20} /></a></li>
+                                                            <li><a href="#"><AiFillInstagram size={20} /></a></li>
+                                                            <li><a href="#"><AiFillTwitterCircle size={20} /></a></li>
+                                                            <li><a href="#"><AiOutlineLink size={20} /></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='col-md-3 mt-3'>
+                                                <button className='btn p-3 mt-1 h5 text-white button-rounded btn-primary'>
+                                                    <RiUserFollowFill size={20} />{' '}
                                             Follow
                                         </button>
-                                            <button className='btn p-3 mt-1 h5 text-white button-rounded btn-success'>
-                                                <MdModeEdit size={20} />{' '}
+                                                <button className='btn p-3 mt-1 h5 text-white button-rounded btn-success'>
+                                                    <MdModeEdit size={20} />{' '}
                                             Edit</button>
-                                            <button className='btn p-3 mt-1 h5 text-white button-rounded btn-danger'>
-                                                <FaPowerOff size={20} />{' '}
+                                                <button className='btn p-3 mt-1 h5 text-white button-rounded btn-danger'>
+                                                    <FaPowerOff size={20} />{' '}
                                             Logout
                                             </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className='axil-post-list-area axil-section-gap bg-color-white'>
-                    <div className='container'>
-                        <div className='row'>
-                            <Heading text='Authors Posts' />
-                            <div className='col-lg-8 col-xl-8'>
-                                {/* <EachPost />
+                    <div className='axil-post-list-area axil-section-gap bg-color-white'>
+                        <div className='container'>
+                            <div className='row'>
+                                <Heading text='Authors Posts' />
+                                <div className='col-lg-8 col-xl-8'>
+                                    {
+                                        data.posts.map((val, i) => {
+                                            return <EachPost2 key={i} data={val} />
+                                        })
+                                    }
+                                    {/* <EachPost />
                             <EachPost />
                             <EachPost />
                             <EachPost /> */}
+                                </div>
+                                <SidePanel data={recent} />
                             </div>
-                            <SidePanel data={recent} />
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
 });
 
 UserProfile.getInitialProps = async (ctx) => {
@@ -126,7 +137,7 @@ UserProfile.getInitialProps = async (ctx) => {
     const allPosts = await posts.json()
     const res = await fetch(Global.API_URL + `/users/?username=${id}`)
     const json = await res.json()
-    return { data: json[0], recent: allPosts }
+    return { data: json[0], recent: allPosts, status: res.status }
 }
 
 export default UserProfile;

@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
-import firebase from "firebase/app";
 import initFirebase from "../services/firebase";
 import EachPost from '../components/EachPost/EachPost';
 import SidePanel from '../components/SidePanel/SidePanel';
-import Google from '../components/Google'
-import { NextSeo} from 'next-seo'
 import { withTheme } from '../context/AppContext';
 import Head from 'next/head'
 import Global from '../Global';
-import axios from 'axios';
 
 initFirebase();
 
@@ -55,7 +51,9 @@ HomePage.getInitialProps = async (ctx) => {
   const res = await fetch(Global.API_URL + '/posts')
   const data = await res.json()
 
-  return { data }
+  console.log('INEXT DATA ---', data.statusCode)
+
+  return { data: res.status === 200 ? data : [] }
 }
 
 export default HomePage;
